@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bulls and Cows - Guess Mode</title>
+
+        <link rel="stylesheet" href="/static/guess_mode.css" />
+        <link rel="stylesheet" href="/static/secret_mode.css" />
+    </head>
+    <body>
+        <header>
+            <a style="color: wheat; cursor: default">Guess mode</a>
+
+            <h1 class="title">Bulls and Cows</h1>
+
+            <a href="/secret_mode">Secret mode</a>
+        </header>
+
+        <h2 class="sub-title">Guess Mode</h2>
+        <h3 class="letters" id="length"></h3>
+
+        <div class="counts"></div>
+
+        <div class="container">
+            <div class="card">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">
+                            <svg
+                                class="terminal-icon"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M4 17l6-6-6-6M12 19h8"></path>
+                            </svg>
+                            Terminal
+                        </span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="command-line">
+                            <span class="prompt">Word:</span>
+                            <div class="input-wrapper">
+                                <input
+                                    id="realInput"
+                                    class="input-field"
+                                    autocomplete="off"
+                                    autofocus
+                                />
+                                <div id="mirror" class="text-mirror">
+                                    <span class="cursor"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            id="output"
+                            style="
+                                margin-top: 20px;
+                                color: orange;
+                                font-family: monospace;
+                                font-size: 1.5em;
+                                min-height: 1.5em;
+                            "
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/game.js"></script>
+    </body>
+</html>
