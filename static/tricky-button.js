@@ -1,33 +1,32 @@
 class TrickyButton extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: "open" });
 
         this.escapeCount = 0;
-        this.maxEscapes = 20;
+        this.maxEscapes = 5;
 
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onClick = this.onClick.bind(this);
     }
 
     static get observedAttributes() {
-        return ['escapes'];
+        return ["escapes"];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'escapes') {
+        if (name === "escapes") {
             this.maxEscapes = parseInt(newValue, 10) || 20;
         }
     }
 
     connectedCallback() {
         this.render();
-        this.btn = this.shadowRoot.getElementById('btn');
+        this.btn = this.shadowRoot.getElementById("btn");
 
-
-        this.btn.addEventListener('mouseover', this.onMouseOver);
-        this.btn.addEventListener('click', this.onClick);
-        this.btn.addEventListener('touchstart', (e) => {
+        this.btn.addEventListener("mouseover", this.onMouseOver);
+        this.btn.addEventListener("click", this.onClick);
+        this.btn.addEventListener("touchstart", (e) => {
             if (this.escapeCount < this.maxEscapes) {
                 e.preventDefault();
                 this.onMouseOver();
@@ -37,16 +36,14 @@ class TrickyButton extends HTMLElement {
 
     disconnectedCallback() {
         if (this.btn) {
-            this.btn.removeEventListener('mouseover', this.onMouseOver);
-            this.btn.removeEventListener('click', this.onClick);
+            this.btn.removeEventListener("mouseover", this.onMouseOver);
+            this.btn.removeEventListener("click", this.onClick);
         }
     }
 
     onMouseOver() {
-
         if (this.escapeCount < this.maxEscapes) {
-
-            this.btn.classList.add('escaping');
+            this.btn.classList.add("escaping");
 
             const maxX = window.innerWidth - this.btn.offsetWidth;
             const maxY = window.innerHeight - this.btn.offsetHeight;
@@ -60,7 +57,7 @@ class TrickyButton extends HTMLElement {
             this.escapeCount++;
             console.log(`Попытка: ${this.escapeCount}/${this.maxEscapes}`);
         } else {
-            this.btn.classList.add('surrendered');
+            this.btn.classList.add("surrendered");
             this.btn.textContent = "I give up!";
         }
     }
@@ -69,12 +66,12 @@ class TrickyButton extends HTMLElement {
         e.preventDefault();
 
         if (this.escapeCount >= this.maxEscapes) {
-
-            this.dispatchEvent(new CustomEvent('caught', {
-                bubbles: true,
-                composed: true
-            }));
-
+            this.dispatchEvent(
+                new CustomEvent("caught", {
+                    bubbles: true,
+                    composed: true,
+                })
+            );
 
             this.reset();
         }
@@ -83,7 +80,7 @@ class TrickyButton extends HTMLElement {
     reset() {
         this.escapeCount = 0;
 
-        this.btn.classList.remove('escaping', 'surrendered');
+        this.btn.classList.remove("escaping", "surrendered");
 
         this.btn.textContent = "Send Feedback";
 
@@ -137,4 +134,4 @@ class TrickyButton extends HTMLElement {
     }
 }
 
-customElements.define('tricky-button', TrickyButton);
+customElements.define("tricky-button", TrickyButton);
