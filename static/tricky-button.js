@@ -4,7 +4,7 @@ class TrickyButton extends HTMLElement {
         this.attachShadow({ mode: "open" });
 
         this.escapeCount = 0;
-        this.maxEscapes = 5;
+        this.maxEscapes = 3;
 
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onClick = this.onClick.bind(this);
