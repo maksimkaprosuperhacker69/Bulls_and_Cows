@@ -1,8 +1,15 @@
 from flask import Flask, request, session, jsonify, render_template, redirect
 from random import choice
+from flask_session import Session
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super_secret_key_change_me'
+
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
 
 file = open("./static/words_set.txt", "r")
 WORDS = file.read().split()
