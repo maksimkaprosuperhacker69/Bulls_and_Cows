@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Bulls and Cows - Guess Mode</title>
+        <title>Bulls and Cows - Guess Mode (Troll mode)</title>
 
         <link rel="stylesheet" href="/static/guess_mode.css" />
         <link rel="stylesheet" href="/static/secret_mode.css" />
@@ -14,10 +14,60 @@
 
             <h1 class="title">Bulls and Cows</h1>
 
-            <a href="/secret_mode">Secret mode</a>
+            <div style="display: flex; gap: 20px">
+                <a href="/secret_mode">Secret mode</a>
+                <a style="margin-left: 3vw" href="/rules">Rules</a>
+            </div>
         </header>
 
         <h2 class="sub-title">Guess Mode</h2>
+        <div style="text-align: center; margin: 20px 0">
+            <label
+                for="word-length-select"
+                style="
+                    font-family: 'Lucida Sans', sans-serif;
+                    font-size: 1.2em;
+                    color: rgb(0, 96, 0);
+                    margin-right: 10px;
+                "
+                >Word Length:</label
+            >
+            <select
+                id="word-length-select"
+                style="
+                    padding: 8px 15px;
+                    font-size: 1.1em;
+                    border-radius: 5px;
+                    border: 2px solid rgb(0, 96, 0);
+                    background-color: white;
+                    color: rgb(0, 96, 0);
+                    font-family: 'Lucida Sans', sans-serif;
+                    cursor: pointer;
+                "
+            >
+                <option value="4" selected>4</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <button
+                id="apply-length-btn"
+                style="
+                    margin-left: 15px;
+                    padding: 8px 20px;
+                    font-size: 1.1em;
+                    border-radius: 5px;
+                    border: none;
+                    background-color: rgb(0, 96, 0);
+                    color: orange;
+                    font-family: 'Lucida Sans', sans-serif;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                "
+            >
+                Apply
+            </button>
+        </div>
         <h3 class="letters" id="length"></h3>
 
         <div class="counts"></div>
@@ -58,6 +108,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div id="history" class="history"></div>
 
                         <div
                             id="output"

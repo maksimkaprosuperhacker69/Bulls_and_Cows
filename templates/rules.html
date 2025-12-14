@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bulls and Cows - Rules</title>
+
+        <link rel="stylesheet" href="/static/guess_mode.css" />
+        <style>
+            .rules-container {
+                max-width: 800px;
+                margin: 5vh auto;
+                padding: 40px;
+                background-color: rgba(217, 217, 217, 0.18);
+                backdrop-filter: blur(8px);
+                border-radius: 12px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                font-family: "Lucida Sans", "Lucida Sans Regular",
+                    "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+                    sans-serif;
+                color: rgb(0, 96, 0);
+            }
+
+            .rules-container h2 {
+                color: rgb(0, 96, 0);
+                margin-bottom: 30px;
+                font-size: 2.5em;
+                text-align: center;
+            }
+
+            .rules-container h3 {
+                color: rgb(0, 96, 0);
+                margin-top: 30px;
+                margin-bottom: 15px;
+                font-size: 1.8em;
+            }
+
+            .rules-container p {
+                margin-bottom: 15px;
+                line-height: 1.6;
+                font-size: 1.1em;
+            }
+
+            .rules-container ul {
+                margin-left: 30px;
+                margin-bottom: 20px;
+            }
+
+            .rules-container li {
+                margin-bottom: 10px;
+                line-height: 1.6;
+                font-size: 1.1em;
+            }
+
+            .example {
+                background-color: rgba(0, 96, 0, 0.1);
+                padding: 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
+
+            .example strong {
+                color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="/guess_mode">Guess mode</a>
+
+            <h1 class="title">Bulls and Cows</h1>
+
+            <div class="button-container" style="margin-left: 3vw">
+                <a href="/secret_mode">Secret mode</a>
+            </div>
+        </header>
+
+        <div class="rules-container">
+            <h2>Game Rules</h2>
+
+            <h3>Objective</h3>
+            <p>
+                Bulls and Cows is a code-breaking game where two players
+                participate. The first player thinks of a sequence of 4 distinct
+                digits, and the second player must guess it.
+            </p>
+
+            <h3>How to Play</h3>
+            <ul>
+                <li>
+                    The computer (or first player) selects a secret sequence of
+                    4 distinct digits (default: 4 digits)
+                </li>
+                <li>
+                    You (the second player) sequentially make guesses by
+                    entering your own variant of four digits
+                </li>
+                <li>
+                    After each guess, you receive feedback in the form of
+                    "Bulls" and "Cows"
+                </li>
+            </ul>
+
+            <h3>Understanding the Feedback</h3>
+            <div class="example">
+                <p>
+                    <strong>Bull:</strong> A digit that is in the correct
+                    position in the sequence.
+                </p>
+                <p>
+                    <strong>Cow:</strong> A digit that is present in the hidden
+                    sequence, but is not in the correct position.
+                </p>
+            </div>
+
+            <h3>Example</h3>
+            <div class="example">
+                <p>Hidden sequence: <strong>3904</strong></p>
+                <p>Your guess: <strong>0324</strong></p>
+                <ul>
+                    <li>
+                        <strong>Bulls: 1</strong> - The digit "4" is in the
+                        correct position (fourth position)
+                    </li>
+                    <li>
+                        <strong>Cows: 2</strong> - The digits "0" and "3" are
+                        present in the hidden sequence but in wrong positions
+                    </li>
+                </ul>
+            </div>
+
+            <h3>Game Modes</h3>
+            <ul>
+                <li>
+                    <strong>Guess Mode:</strong> You try to guess the computer's
+                    secret sequence of digits. The computer provides feedback
+                    (bulls and cows) after each guess. The game finishes when
+                    you guess the sequence correctly (4 bulls).
+                </li>
+                <li>
+                    <strong>Secret Mode:</strong> You think of a sequence of
+                    digits, and the computer tries to guess it. You provide the
+                    feedback (bulls and cows) after each computer guess. The
+                    game finishes when the computer receives the answer "4
+                    bulls".
+                </li>
+            </ul>
+
+            <h3>Tips</h3>
+            <ul>
+                <li>
+                    Start with guesses that cover different digits to gather
+                    information about which digits are in the sequence
+                </li>
+                <li>Use the bulls to identify correct positions</li>
+                <li>
+                    Use the cows to identify which digits are in the sequence
+                    but need repositioning
+                </li>
+                <li>
+                    Eliminate possibilities systematically based on the feedback
+                </li>
+                <li>
+                    Remember: the sequence consists of distinct digits (no
+                    repetitions)
+                </li>
+            </ul>
+
+            <h3>Winning</h3>
+            <p>
+                You win in Guess Mode when you guess the secret sequence
+                correctly (4 bulls). In Secret Mode, the computer wins when it
+                correctly guesses your sequence (receives 4 bulls).
+            </p>
+
+        </div>
+    </body>
+</html>
