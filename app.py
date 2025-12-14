@@ -48,14 +48,11 @@ def bulls_cows(secret, guess):
     secret_chars = list(secret)
     guess_chars = list(guess)
     
-    # Count cows: digits that are in secret but not in correct position
     cows = 0
     for char in set(secret):
         secret_count = secret.count(char)
         guess_count = guess.count(char)
-        # Count how many of this char are in correct position (bulls)
         bulls_for_char = sum(1 for s, g in zip(secret, guess) if s == g == char)
-        # Cows = min of counts minus the bulls
         cows += min(secret_count, guess_count) - bulls_for_char
     
     return bulls, cows
@@ -75,11 +72,9 @@ def validate_feedback_consistency(candidates, last_guess, bulls, cows, word_leng
     if not matching:
         return False, "Inconsistent feedback: No valid sequences match this result. Please check your bulls/cows count."
     
-    # Check if bulls + cows exceeds word length (impossible)
     if bulls + cows > word_length:
         return False, f"Inconsistent feedback: Bulls ({bulls}) + Cows ({cows}) cannot exceed sequence length ({word_length})"
     
-    # Check if bulls equals word_length but cows > 0 (impossible)
     if bulls == word_length and cows > 0:
         return False, f"Inconsistent feedback: If all digits are correct (bulls={word_length}), cows must be 0"
     
@@ -193,7 +188,7 @@ def initialize_app_routes(app):
         
         response = {
             "guess": new_guess,
-            "history": guess_history  # Return full history
+            "history": guess_history
         }
         if repetition_warning:
             response["warning"] = repetition_warning
@@ -248,7 +243,7 @@ def initialize_app_routes(app):
         if len(user_guess) != word_length:
             return jsonify({"error": f"Guess must be {word_length} digits long"}), 400
         
-        # Validate distinct digits (improvement: warn if user guesses with repetitions)
+        # Validate distinct digits
         if not has_distinct_digits(user_guess):
             return jsonify({
                 "error": "Guess must contain distinct digits (no repetitions)",
@@ -327,14 +322,11 @@ def play_single_game(secret, candidates):
         # Calculate feedback
         bulls, cows = bulls_cows(secret, guess)
         
-        # Check if guessed
         if bulls == len(secret):
             return attempts
         
-        # Filter candidates
         current_candidates = filter_candidates(current_candidates, guess, bulls, cows)
     
-    # Should not happen with correct feedback, but handle edge case
     return attempts
 
 

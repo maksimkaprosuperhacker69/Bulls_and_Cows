@@ -253,8 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         renderText();
         terminalInput.focus();
-
-        // Initialize game with default or saved word length
         async function startGuessGame() {
             try {
                 const res = await apiRequest("/guess_mode");
@@ -270,8 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         startGuessGame();
     }
-
-    // Word length selection functionality
     const wordLengthSelect = document.getElementById("word-length-select");
     const applyLengthBtn = document.getElementById("apply-length-btn");
 
@@ -289,17 +285,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // Restart the game with new length
                 if (terminalInput) {
-                    // Clear history and output
                     if (historyContainer) {
                         historyContainer.innerHTML = "";
                     }
                     if (terminalOutput) {
                         terminalOutput.innerText = "";
                     }
-
-                    // Start new game
                     try {
                         const res = await apiRequest("/guess_mode");
                         const l = document.getElementById("length");
@@ -327,7 +319,6 @@ document.addEventListener("DOMContentLoaded", () => {
         startSecretGame();
     }
 
-    // Word length selection for secret mode
     const wordLengthSelectSecret = document.getElementById(
         "word-length-select-secret"
     );
@@ -349,10 +340,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // Restart the secret game with new length
                 if (computerGuessDisplay) {
                     computerGuessDisplay.innerText = "Restarting...";
-                    // Clear history when restarting
                     if (secretHistoryContainer) {
                         secretHistoryContainer.innerHTML = "";
                     }
